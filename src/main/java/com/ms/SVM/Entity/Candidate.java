@@ -1,5 +1,6 @@
 package com.ms.SVM.Entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.ms.SVM.Model.AppRole;
 import com.ms.SVM.Model.UserType;
 import jakarta.persistence.*;
@@ -14,13 +15,12 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Setter
 @Entity
 public class Candidate implements UserType {
-
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long candidateId;
-    private String name;
+    @JoinColumn(name = "userId", referencedColumnName = "userId")
+    @JsonBackReference
+    private User userDetails;
+    
     private String partyAffiliation;
-    private String bio;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "electionId", nullable = false)

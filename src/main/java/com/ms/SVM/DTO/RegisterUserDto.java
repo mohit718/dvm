@@ -1,6 +1,7 @@
 package com.ms.SVM.DTO;
 
 import com.ms.SVM.Model.AppRole;
+import com.ms.SVM.Model.UserType;
 import lombok.Data;
 
 @Data

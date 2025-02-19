@@ -1,5 +1,6 @@
 package com.ms.SVM.Entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.ms.SVM.Model.AppRole;
 import com.ms.SVM.Model.UserType;
 import jakarta.persistence.*;
@@ -14,12 +15,11 @@ import java.util.Date;
 public class Voter implements UserType {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long voterId;
-    private String name;
+    @JoinColumn(name = "userId", referencedColumnName = "userId")
+    @JsonBackReference
+    private User userDetails;
     private Date dateOfBirth;
     private String address;
-    private String email;
     private String phoneNumber;
     private Date registeredDate;
     private String voterStatus;

@@ -1,5 +1,6 @@
 package com.ms.SVM.Entity;
 
+import com.ms.SVM.Model.UserType;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -48,6 +49,7 @@ public class User implements UserDetails {
     private String password;
 
     private String fullName;
+    private String bio;
 
     @CreationTimestamp
     @Column(updatable = false)
@@ -56,7 +58,7 @@ public class User implements UserDetails {
     @UpdateTimestamp
     private LocalDateTime updatedDate;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = { CascadeType.MERGE })
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "role_id", referencedColumnName = "role_id")
     @JsonBackReference
     @ToString.Exclude
